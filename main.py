@@ -2,49 +2,48 @@
 # INF601 - Advanced Programming in Python
 # Joshua Seirer
 # Mini Project 2a
+# NCHS - Injury Mortality: United States
+# https://dev.socrata.com/foundry/data.cdc.gov/nt65-c7a7
 
-# make sure to install these packages before running:
-# pip install pandas
-# pip install sodapy
-
+# (5/5 points) Proper import of packages used.
 import pandas as pd
 from sodapy import Socrata
-from configs import APIToken, cdcPWD
+from configs import APIToken, cdcPWD, myUsername
 
 # Unauthenticated client only works with public data sets. Note 'None'
 # in place of application token, and no username or password:
 client = Socrata("data.cdc.gov",
                  APIToken,
-                 username="j_seirer@mail.fhsu.edu",
+                 username=myUsername,
                  password=cdcPWD)
-
-# Example authenticated client (needed for non-public datasets):
-# client = Socrata(data.cdc.gov,
-#                  MyAppToken,
-#                  username="user@example.com",
-#                  password="AFakePassword")
 
 # First 2000 results, returned as JSON from API / converted to Python list of
 # dictionaries by sodapy.
 results = client.get("nt65-c7a7", limit=2000)
 
+# (10/10 points) Store this information in Pandas dataframe. These should be 2D data as a dataframe, meaning the data
+# is labeled tabular data.
 # Convert to pandas DataFrame
 results_df = pd.DataFrame.from_records(results)
 
-print(results_df)
+injuryMech = results_df['injury_mechanism']
 
-# (5/5 points) Proper import of packages used.
+for n in injuryMech:
+    if injuryMech == "Firearm":
+        print(injuryMech)
+
+
+
+
 
 # (20/20 points) Using a data source of your choice, such as data from data.gov or using the Faker package, generate or
 
 # retrieve some data for creating basic statistics on. This will generally come in as json data, etc.
 
 # Think of some question you would like to solve such as:
-#   NCHS - Injury Mortality: United States
-#   https://dev.socrata.com/foundry/data.cdc.gov/nt65-c7a7
 
-# (10/10 points) Store this information in Pandas dataframe. These should be 2D data as a dataframe, meaning the data
-# is labeled tabular data.
+
+
 # (10/10 points) Using matplotlib, graph this data in a way that will visually represent the data. Really try to build
 # some fancy charts here as it will greatly help you in future homework assignments and in the final project.
 # (10/10 points) Save these graphs in a folder called charts as PNG files. Do not upload these to your project folder,
