@@ -26,12 +26,15 @@ results = client.get("nt65-c7a7", limit=2000)
 # Convert to pandas DataFrame
 results_df = pd.DataFrame.from_records(results)
 
-injuryMech = results_df['injury_mechanism']
+#injuryMechDeath = results_df[['injury_mechanism', 'deaths']].where(results_df['injury_mechanism'] == "Firearm")
+#print(injuryMechDeath)
 
-for n in injuryMech:
-    if injuryMech == "Firearm":
-        print(injuryMech)
+n = []
 
+for result in results_df:
+    print(result)
+    #if result["injury_mechanism"] == "Firearm":
+       # n.append(result)
 
 
 
