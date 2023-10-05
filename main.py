@@ -10,10 +10,17 @@
 
 import pandas as pd
 from sodapy import Socrata
+from configs import APIkey, APIsecret, cdcPWD
+
+
 
 # Unauthenticated client only works with public data sets. Note 'None'
 # in place of application token, and no username or password:
-client = Socrata("data.cdc.gov", None)
+client = Socrata("data.cdc.gov",
+                 APIsecret,
+                 username="j_seirer@mail.fhsu.edu",
+                 password=cdcPWD
+                )
 
 # Example authenticated client (needed for non-public datasets):
 # client = Socrata(data.cdc.gov,
@@ -27,6 +34,8 @@ results = client.get("nt65-c7a7", limit=2000)
 
 # Convert to pandas DataFrame
 results_df = pd.DataFrame.from_records(results)
+
+print(results_df)
 
 
 
