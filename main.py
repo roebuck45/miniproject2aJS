@@ -3,24 +3,20 @@
 # Joshua Seirer
 # Mini Project 2a
 
-
 # make sure to install these packages before running:
 # pip install pandas
 # pip install sodapy
 
 import pandas as pd
 from sodapy import Socrata
-from configs import APIkey, APIsecret, cdcPWD
-
-
+from configs import APIToken, cdcPWD
 
 # Unauthenticated client only works with public data sets. Note 'None'
 # in place of application token, and no username or password:
 client = Socrata("data.cdc.gov",
-                 APIsecret,
+                 APIToken,
                  username="j_seirer@mail.fhsu.edu",
-                 password=cdcPWD
-                )
+                 password=cdcPWD)
 
 # Example authenticated client (needed for non-public datasets):
 # client = Socrata(data.cdc.gov,
@@ -37,11 +33,6 @@ results_df = pd.DataFrame.from_records(results)
 
 print(results_df)
 
-
-
-
-
-
 # (5/5 points) Proper import of packages used.
 
 # (20/20 points) Using a data source of your choice, such as data from data.gov or using the Faker package, generate or
@@ -51,8 +42,6 @@ print(results_df)
 # Think of some question you would like to solve such as:
 #   NCHS - Injury Mortality: United States
 #   https://dev.socrata.com/foundry/data.cdc.gov/nt65-c7a7
-
-
 
 # (10/10 points) Store this information in Pandas dataframe. These should be 2D data as a dataframe, meaning the data
 # is labeled tabular data.
