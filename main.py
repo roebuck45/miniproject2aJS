@@ -12,14 +12,15 @@ from configs import APIToken, cdcPWD, myUsername
 
 # Unauthenticated client only works with public data sets. Note 'None'
 # in place of application token, and no username or password:
-client = Socrata("data.cdc.gov",
-                 APIToken,
-                 username=myUsername,
-                 password=cdcPWD)
+# client = Socrata("data.cdc.gov",
+#                 APIToken,
+#                 username=myUsername,
+#                 password=cdcPWD)
 
 # First 2000 results, returned as JSON from API / converted to Python list of
 # dictionaries by sodapy.
 results = client.get("nt65-c7a7", limit=2000)
+pd.read_csv(NCHSMort)
 
 # (10/10 points) Store this information in Pandas dataframe. These should be 2D data as a dataframe, meaning the data
 # is labeled tabular data.
